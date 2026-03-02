@@ -1,15 +1,29 @@
 import express from "express";
 import bcrypt from "bcrypt";
-import { saltRounds } from "../config/config";
+import { saltRounds,pool } from "../config/config.js";
+import pg from "pg"
 
-export const login_credential = function (req,res,next) {
-    const { email,password } = req.body
-    console.log(email,password);
-    bcrypt.genSalt(saltRounds, function(err, salt) {
-        bcrypt.hash(password, salt, function(err, hash) {
+
+export const login_credential = async function (req,res,next) {
+    try{
+        const { email,password } = req.body
+            console.log(email,password);
+            const hash = await bcrypt.hash(password,saltRounds);
             console.log(hash);
+            const result = await pool.query(
+                "INSERT INTO users(email,password) VALUES($1,$2)",
+                [email, hash]
+            );
             
-        });
-    });
-    res.json({success: false});
+            
+            res.json({
+                success:true,
+                user:result.rows[0]
+            });
+    }
+    catch(err){
+        console.error(err);
+        res.status(500).json({ success:false })
+    }
+
 }
