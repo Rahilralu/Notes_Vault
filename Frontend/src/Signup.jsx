@@ -1,21 +1,20 @@
 import { useState } from 'react'
 import './App.css'
 
-function Login({ onLoginSuccess, onNavigate }) {
+function Signup({ onNavigate }) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
-        onLoginSuccess(email, password)
+        // No logic needed as requested by the user
     }
 
     return (
         <div className="login-wrapper">
             <div className="login-card">
-                <h2>Welcome Back</h2>
-                <p className="subtitle">Enter your credentials to access the dashboard.</p>
+                <h2>Create an Account</h2>
+                <p className="subtitle">Sign up to get started.</p>
                 <form onSubmit={handleSubmit}>
                     <div className="input-group">
                         <label>Email</label>
@@ -38,17 +37,17 @@ function Login({ onLoginSuccess, onNavigate }) {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
-                            autoComplete="current-password"
+                            autoComplete="new-password"
                         />
                     </div>
-                    <button type="submit" className="login-btn">Sign In</button>
+                    <button type="submit" className="login-btn">Sign Up</button>
                 </form>
                 <p className="auth-switch">
-                    Don't have an account? <span onClick={() => onNavigate('signup')}>Sign Up</span>
+                    Already have an account? <span onClick={() => onNavigate('login')}>Sign In</span>
                 </p>
             </div>
         </div>
     )
 }
 
-export default Login
+export default Signup

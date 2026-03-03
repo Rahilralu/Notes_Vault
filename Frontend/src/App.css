@@ -163,3 +163,21 @@ body {
     color: #0f0;
     border: 1px solid #0f0;
 }
+
+.auth-switch {
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+.auth-switch span {
+    color: #007bff;
+    font-weight: 500;
+    cursor: none;
+    transition: color 0.2s ease;
+}
+
+.auth-switch span:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
