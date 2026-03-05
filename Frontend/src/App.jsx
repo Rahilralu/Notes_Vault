@@ -16,8 +16,8 @@ function App() {
             <AnimatedBackground />
             <CustomCursor />
             <div className="app-container">
-                {currentPage === 'login' && <Login onLoginSuccess={(email, password) => handleLoginSuccess(email, password, setCurrentPage)} onNavigate={setCurrentPage} />}
-                {currentPage === 'signup' && <Signup onNavigate={setCurrentPage} />}
+                {currentPage === 'login' && <Login onLoginSuccess={(email, password) => handleLoginSuccess(email, password, setCurrentPage,'Sign-In')} onNavigate={setCurrentPage} />}
+                {currentPage === 'signup' && <Signup onLoginSuccess={(email,password) => handleLoginSuccess(email,password,setCurrentPage,'Sign-Up')} onNavigate={setCurrentPage} />}
                 {currentPage === 'dashboard' && <Dashboard />}
             </div>
         </>

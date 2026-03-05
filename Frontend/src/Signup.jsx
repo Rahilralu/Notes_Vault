@@ -1,13 +1,14 @@
 import { useState } from 'react'
 import './App.css'
 
-function Signup({ onNavigate }) {
+function Signup({ onLoginSuccess,onNavigate }) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        // No logic needed as requested by the user
+        onLoginSuccess(email, password)
+
     }
 
     return (
