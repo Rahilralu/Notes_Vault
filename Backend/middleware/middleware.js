@@ -48,12 +48,12 @@ export const cookievalidator = async function (req,res,next){
             [token]
         )
         if(result.rows.length === 0){
-            return res.status(403).json({"Token not in db may be logged off"})
+            return res.status(403).json({message: "Token not in db may be logged off"})
         }
         else{
             jwt.verify(token,process.env.REFRESH_TOKEN_SECRET,(err) => {
                 if(err){
-                    return res.status(403).json({"Error in token no refresh token"})
+                    return res.status(403).json({ message : "Error in token no refresh token"})
                 }
                 const user = result.rows[0]  // use the DB result instead
                 const access_token = generateAccessToken(user.id, user.email)

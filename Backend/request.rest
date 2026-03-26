@@ -11,6 +11,24 @@ GET http://localhost:8000
 
 ### 
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ikt5bGUiLCJpYXQiOjE3NzMyMjYyNjB9.UcMkGCctSQW78N8aNQ6uC6raMRHD0QxjzTrHsSJhvuE
-
-
 ### 
+
+POST http://localhost:8000/login
+Content-Type: application/json
+
+{
+    "email": "test@gmail.com",
+    "password": "test1234",
+    "type": "Sign-Up"
+}
+### Refresh
+POST http://localhost:5000/refresh
+
+### Logout
+GET http://localhost:5000/logout
+```
+
+###
+### Me
+GET http://localhost:8000/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjU3LCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNzc0NTMwMTc2LCJleHAiOjE3NzQ1MzM3NzZ9.hMWgUp7vfEjYxQYqgW4zfttZnyi_8KX_VRX6ObchnmM

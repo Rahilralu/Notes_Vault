@@ -1,5 +1,5 @@
 import express from "express";
-import { login_credential,cookievalidator,deleteuser  } from "../middleware/middleware.js";
+import { login_credential,cookievalidator,deleteuser ,authenticate_token } from "../middleware/middleware.js";
 
 const router = express.Router();
 const posts = [
@@ -12,12 +12,18 @@ const posts = [
         password: 'lala1234'
     }
 ]
-
-router.post('/refresh',cookievalidator)
-router.get('/logout',deleteuser)
 router.get('/',(req,res) => {
     res.send('HAHAHA')
 })
+
+router.get('/me', authenticate_token, (req, res) => {
+    res.json({ 
+        message: 'JWT is working!',
+        user: req.user  // this comes from authenticate_token
+    });
+});
+router.post('/refresh',cookievalidator)
+router.get('/logout',deleteuser)
 
 // router.post('/signs',(req,res) => {
 //     try{
@@ -34,9 +40,9 @@ router.get('/',(req,res) => {
 // )
 
 router.post('/login',login_credential)
-// router.get('/posts',authenticate_token,(req,res) => {
-//     res.json(posts.filter(post => post.username === req.user.username))
-// })
+router.get('/posts',authenticate_token,(req,res) => {
+    res.json(posts.filter(post => post.username === req.user.username))
+})
 
 // router.post('/sign',json_web_token);
 export default router;
